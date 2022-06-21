@@ -21,6 +21,5 @@ char *_strchr(char *s, char c)
 
 	return ('\0');
 }
-© 2022 GitHub, Inc.
-Terms
+
 
