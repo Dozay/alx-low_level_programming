@@ -32,7 +32,5 @@ char *_strdup(char *str)
 
 	return (duplicate);
 }
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
+
 
