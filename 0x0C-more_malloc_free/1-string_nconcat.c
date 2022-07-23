@@ -2,32 +2,43 @@
 #include <stdlib.h>
 
 /**
- * _calloc - Allocates memory for an array of a certain number
- *           of elements each of an inputted byte size.
- * @nmemb: The number of elements.
- * @size: The byte size of each array element.
+ * string_nconcat - Concatenates two strings using at
+ *                  most an inputted number of bytes.
+ * @s1: The first string.
+ * @s2: The second string.
+ * @n: The maximum number of bytes of s2 to concatenate to s1.
  *
- * Return: If nmemb = 0, size = 0, or the function fails - NULL.
- *         Otherwise - a pointer to the allocated memory.
+ * Return: If the function fails - NULL.
+ *         Otherwise - a pointer to the concatenated space in memory.
  */
-void *_calloc(unsigned int nmemb, unsigned int size)
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	void *mem;
-	char *filler;
-	unsigned int index;
+	char *concat;
+	unsigned int len = n, index;
 
-	if (nmemb == 0 || size == 0)
+	if (s1 == NULL)
+		s1 = "";
+
+	if (s2 == NULL)
+		s2 = "";
+
+	for (index = 0; s1[index]; index++)
+		len++;
+
+	concat = malloc(sizeof(char) * (len + 1));
+
+	if (concat == NULL)
 		return (NULL);
 
-	mem = malloc(size * nmemb);
+	len = 0;
 
-	if (mem == NULL)
-		return (NULL);
+	for (index = 0; s1[index]; index++)
+		concat[len++] = s1[index];
 
-	filler = mem;
+	for (index = 0; s2[index] && index < n; index++)
+		concat[len++] = s2[index];
 
-	for (index = 0; index < (size * nmemb); index++)
-		filler[index] = '\0';
+	concat[len] = '\0';
 
-	return (mem);
+	return (concat);
 }
